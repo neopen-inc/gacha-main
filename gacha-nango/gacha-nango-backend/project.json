@@ -1,0 +1,69 @@
+{
+  "name": "gacha-nango/gacha-nango-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "gacha-nango/gacha-nango-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/gacha-nango/gacha-nango-backend",
+        "main": "gacha-nango/gacha-nango-backend/src/main.ts",
+        "tsConfig": "gacha-nango/gacha-nango-backend/tsconfig.app.json",
+        "assets": [
+          "gacha-nango/gacha-nango-backend/src/assets",
+          "gacha-nango/gacha-nango-backend/src/app.yaml"
+        ],
+        "isolatedConfig": true,
+        "webpackConfig": "gacha-nango/gacha-nango-backend/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "gacha-nango/gacha-nango-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "gacha-nango/gacha-nango-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "gacha-nango/gacha-nango-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["gacha-nango/gacha-nango-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "gacha-nango/gacha-nango-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

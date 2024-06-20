@@ -1,0 +1,41 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "../../gacha-nango/gacha-nango-frontend/.next/types/**/*.ts",
+    "../../dist/gacha-nango/gacha-nango-frontend/.next/types/**/*.ts",
+    "next-env.d.ts",
+    "../../gacha-land/gacha-land-frontend/.next/types/**/*.ts",
+    "../../dist/gacha-land/gacha-land-frontend/.next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "jest.config.ts",
+    "lib/**/*.spec.ts",
+    "lib/**/*.test.ts"
+  ]
+}

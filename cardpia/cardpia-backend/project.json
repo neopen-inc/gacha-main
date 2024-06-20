@@ -1,0 +1,68 @@
+{
+  "name": "cardpia/cardpia-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "cardpia/cardpia-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/cardpia/cardpia-backend",
+        "main": "cardpia/cardpia-backend/src/main.ts",
+        "tsConfig": "cardpia/cardpia-backend/tsconfig.app.json",
+        "assets": [
+          "cardpia/cardpia-backend/src/templates",
+          "cardpia/cardpia-backend/src/app.yaml"
+        ],
+        "isolatedConfig": false
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "cardpia/cardpia-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "cardpia/cardpia-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "cardpia/cardpia-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["cardpia/cardpia-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "cardpia/cardpia-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,36 @@
+.stampball {
+  box-sizing: border-box;
+  --pokeball-size: 30px;
+  --pokeball-inner-size: calc(var(--pokeball-size) * 0.3);
+  --pokeball-border-size: calc(var(--pokeball-size) * 0.03);
+  --pokeball-border-color: #000;
+  --before-diameter: var(--pokeball-inner-size);
+  --after-diameter: calc(var(--before-diameter) - (var(--pokeball-border-size) * 2));
+  border: var(--pokeball-border-size) solid var(--pokeball-border-color);
+  border-radius: 50%;
+  width: var(--pokeball-size);
+  height: var(--pokeball-size);
+  background: linear-gradient(
+    150deg,
+    #FCA5A5 0%,
+    #FCA5A5 48%,
+    #262122 48%,
+    #262122 52%,
+    #fff 52%,
+    #fff 100%
+  )
+}
+
+.border-gradient {
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 5px;
+  border-color: #FCA5A5;
+}
+
+.star {
+	width: 30px;
+	height: 30px;
+	background: yellow;
+	clip-path: polygon(50% 5%, 61% 40%, 98% 40%, 68% 62%, 79% 96%, 50% 75%, 21% 96%, 32% 62%, 2% 40%, 39% 40%);
+}

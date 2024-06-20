@@ -1,0 +1,64 @@
+{
+  "name": "gacha-reversal/gacha-reversal-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "gacha-reversal/gacha-reversal-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/gacha-reversal/gacha-reversal-backend",
+        "main": "gacha-reversal/gacha-reversal-backend/src/main.ts",
+        "tsConfig": "gacha-reversal/gacha-reversal-backend/tsconfig.app.json",
+        "assets": ["gacha-reversal/gacha-reversal-backend/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "gacha-reversal/gacha-reversal-backend/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "gacha-reversal/gacha-reversal-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "gacha-reversal/gacha-reversal-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "gacha-reversal/gacha-reversal-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["gacha-reversal/gacha-reversal-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "gacha-reversal/gacha-reversal-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

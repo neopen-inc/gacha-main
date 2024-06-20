@@ -1,0 +1,68 @@
+{
+  "name": "nanashinooripa/nanashinooripa-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "nanashinooripa/nanashinooripa-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/nanashinooripa/nanashinooripa-backend",
+        "main": "nanashinooripa/nanashinooripa-backend/src/main.ts",
+        "tsConfig": "nanashinooripa/nanashinooripa-backend/tsconfig.app.json",
+        "assets": [
+          "nanashinooripa/nanashinooripa-backend/src/templates",
+          "nanashinooripa/nanashinooripa-backend/src/app.yaml"
+        ],
+        "isolatedConfig": false
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "nanashinooripa/nanashinooripa-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "nanashinooripa/nanashinooripa-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "nanashinooripa/nanashinooripa-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["nanashinooripa/nanashinooripa-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "nanashinooripa/nanashinooripa-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

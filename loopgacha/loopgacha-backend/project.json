@@ -1,0 +1,70 @@
+{
+  "name": "loopgacha/loopgacha-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "loopgacha/loopgacha-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/loopgacha/loopgacha-backend",
+        "main": "loopgacha/loopgacha-backend/src/main.ts",
+        "tsConfig": "loopgacha/loopgacha-backend/tsconfig.app.json",
+        "assets": [
+          "loopgacha/loopgacha-backend/src/templates",
+          "loopgacha/loopgacha-backend/src/app.yaml"
+        ],
+        "isolatedConfig": false
+      },
+      "configurations": {
+        "development": {
+          "generatePackageJson": true
+        },
+        "production": {
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "loopgacha/loopgacha-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "loopgacha/loopgacha-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "loopgacha/loopgacha-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["loopgacha/loopgacha-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "loopgacha/loopgacha-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

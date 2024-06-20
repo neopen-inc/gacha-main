@@ -1,0 +1,51 @@
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
+import { PaymentService } from './payment.service';
+import { ListQueryOptionsDto } from '../dto/list-query-options.dto';
+import { RequireAdmin } from '../auth/decorators/admin.decorator';
+
+@Controller('payment')
+export class PaymentController {
+  constructor(private readonly paymentService: PaymentService) {}
+
+  /*
+  @Post()
+  create(@Body() createPaymentDto: CreatePaymentDto) {
+    return this.paymentService.create(createPaymentDto);
+  }
+  */
+
+  @RequireAdmin()
+  @Get()
+  findAll(@Query() queryOptions: ListQueryOptionsDto) {
+    return this.paymentService.findAll(queryOptions);
+  }
+
+  @RequireAdmin()
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.paymentService.findOne(id);
+  }
+
+  /*
+  @RequireAdmin()
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updatePaymentDto: UpdatePaymentDto) {
+    return this.paymentService.update(id, updatePaymentDto);
+  }
+  */
+
+  @RequireAdmin()
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.paymentService.remove(id);
+  }
+}

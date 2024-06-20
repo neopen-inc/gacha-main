@@ -1,0 +1,68 @@
+
+.ribon-outer{
+  width:80%;
+  height: 50px;
+  line-height:50px;
+  background:#eb3b5a;
+  text-align:center;
+  margin: -10px auto 10px auto;
+  position:relative;
+  box-sizing:border-box;
+  font-family: arial;
+  border-top: yellow 1px double;
+  border-bottom: yellow 1px double;
+}
+.ribon-outer:before{
+  position:absolute;
+  content:'';
+  left:-25px;
+  top:25px;
+  border-top:25px solid transparent;
+  border-right:25px solid #333;
+  border-bottom:25px solid transparent;
+  border-left:25px solid transparent;
+  z-index:-1;
+}
+.ribon-outer:after{
+  position:absolute;
+  content:'';
+  right:-25px;
+  top:25px;
+  border-top:25px solid transparent;
+  border-right:25px solid transparent;
+  border-bottom:25px solid transparent;
+  border-left:25px solid #333;
+  z-index:-1;
+}
+.ribon-left{
+  position:absolute;
+  border-top:25px solid #D15656;
+  border-right:50px solid #D15656;
+  border-bottom:25px solid #D15656;
+  border-left:25px solid transparent;
+  top:25px;
+  left:-50px;
+  z-index:-2;
+  
+}
+.ribon-right{
+  position:absolute;
+  border-top:25px solid #D15656;
+  border-right:25px solid transparent;
+  border-bottom:25px solid #D15656;
+  border-left:50px solid #D15656;
+  top:25px;
+  right:-50px;
+  z-index:-2;
+}
+
+.ribon div span{
+  display:block;
+  line-height:50px;
+  height:50px;
+  font-weight:bold;
+  font-size:28px;
+  font-family:arial;
+  color:#000;
+  text-transform:uppercase;
+}

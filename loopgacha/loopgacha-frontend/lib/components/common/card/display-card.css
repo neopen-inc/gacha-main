@@ -1,0 +1,10 @@
+
+.display-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url('/card-mark.png');
+  width: 20px;
+  height: 40px;
+}

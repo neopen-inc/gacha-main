@@ -1,0 +1,68 @@
+{
+  "name": "gacha-colle/gacha-colle-backend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "gacha-colle/gacha-colle-backend/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/gacha-colle/gacha-colle-backend",
+        "main": "gacha-colle/gacha-colle-backend/src/main.ts",
+        "tsConfig": "gacha-colle/gacha-colle-backend/tsconfig.app.json",
+        "assets": ["gacha-colle/gacha-colle-backend/src/assets", "gacha-colle/gacha-colle-backend/src/templates", "gacha-colle/gacha-colle-backend/src/app.yaml"],
+        "isolatedConfig": true,
+        "webpackConfig": "gacha-colle/gacha-colle-backend/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "generatePackageJson": true
+        },
+        "production": {
+          "generatePackageJson": true
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "gacha-colle/gacha-colle-backend:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "gacha-colle/gacha-colle-backend:build:development"
+        },
+        "production": {
+          "buildTarget": "gacha-colle/gacha-colle-backend:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["gacha-colle/gacha-colle-backend/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "gacha-colle/gacha-colle-backend/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

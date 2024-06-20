@@ -1,0 +1,24 @@
+steps:
+  # Install dependencies
+  - name: 'node:18-alpine'
+    entrypoint: 'npm'
+    args: ['install']
+    
+  # Build the Docker image for project
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '--build-arg', 'project=$_LOCAL_PROJECT_ID', '-t', 'gcr.io/$_GCP_PROJECT_ID/$_GCP_PROJECT_ID-frontend', '-f', '$_LOCAL_PROJECT_ID/$_LOCAL_PROJECT_ID-frontend/Dockerfile', '.']
+
+  # Push the Docker image to Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$_GCP_PROJECT_ID/$_GCP_PROJECT_ID-frontend']
+
+  # Deploy project-a-react to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', '$_GCP_PROJECT_ID-frontend', '--image', 'gcr.io/$_GCP_PROJECT_ID/$_GCP_PROJECT_ID-frontend', '--platform', 'managed', '--region', 'asia-northeast1', "--cpu", "1", "--max-instances", "1", "--allow-unauthenticated"]
+
+# Specify the images to be stored in the container registry
+images:
+  - 'gcr.io/$_GCP_PROJECT_ID/$_GCP_PROJECT_ID-frontend'
+substitutions:
+  _LOCAL_PROJECT_ID: gacha-labs
+  _GCP_PROJECT_ID: gacha-labs

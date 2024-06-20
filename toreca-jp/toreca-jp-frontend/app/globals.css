@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+
+.h-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+html {
+  font-family: "Noto Sans JP", "Noto Sans CJK jp", "Hiragino Kaku Gothic ProN",  "sans-serif";
+}

@@ -1,0 +1,27 @@
+
+.sitetext {
+  padding: 10px;
+}
+.sitetext div {
+  color: #475569;
+  padding: 5px 5px 10px 5px;
+  font-size: 16px;
+  
+}
+
+.sitetext h1 {
+  color: #020617;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.sitetext h3 {
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.sitetext div.bold {
+  color: #1e293b;
+  font-weight: 600;
+  padding: 10px 0 0 0;
+}

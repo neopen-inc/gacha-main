@@ -1,0 +1,35 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common-utils": ["lib/common-utils/src/index.ts"],
+      "@common-utils/*": ["lib/common-utils/src/*"],
+      "@commons": ["app-lib/src/index.ts"],
+      "@commons/*": ["app-lib/src/*"],
+      "@gacha-colle-app/*": ["gacha-colle/gacha-colle-frontend/lib/*"],
+      "@gacha-commons": ["app-libs/gacha-commons/src/index.ts"],
+      "@gacha-expo-app/*": ["gacha-expo/gacha-expo-frontend/lib/*"],
+      "@gacha-land-app/*": ["gacha-land/gacha-land-frontend/lib/*"],
+      "@nanashinooripa-app/*": ["nanashinooripa/nanashinooripa-frontend/lib/*"],
+      "@gacha-nango-app/*": ["gacha-nango/gacha-nango-frontend/lib/*"],
+      "@loopgacha-app/*": ["loopgacha/loopgacha-frontend/lib/*"],
+      "@toreca-jp-app/*": ["toreca-jp/toreca-jp-frontend/lib/*"],
+      "@gacha-labs-app/*": ["gacha-labs/gacha-labs-frontend/lib/*"],
+      "@cardpia-app/*": ["cardpia/cardpia-frontend/lib/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
